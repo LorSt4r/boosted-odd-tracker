@@ -57,6 +57,7 @@ SUPERQUOTE_HISTORY_FILE=superquote_history.json
 GOOGLE_SHEETS_CREDENTIALS_FILE=credentials.json
 GOOGLE_SHEETS_SPREADSHEET_ID=your_google_sheet_id_here
 GOOGLE_SHEETS_WORKSHEET_NAME=Database
+HEALTHCHECK_URL=https://hc-ping.com/yourhealtcheckurl
 
 ```
 
