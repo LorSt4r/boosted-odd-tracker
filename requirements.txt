@@ -1,0 +1,7 @@
+requests
+aiohttp
+playwright
+gspread
+google-auth
+python-dotenv
+typing
