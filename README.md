@@ -18,8 +18,8 @@ A fully automated Python tool designed to detect market inefficiencies in sports
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/LorSt4r/superquote-tracker.git](https://github.com/LorSt4r/superquote-tracker.git)
-cd superquote-tracker
+git clone [https://github.com/LorSt4r/boosted-odd-tracker.git](https://github.com/LorSt4r/boosted-odd-tracker.git)
+cd boosted-odd-tracker
 
 ```
 
