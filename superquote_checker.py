@@ -38,7 +38,7 @@ SPORT_ICON_MAP = {
 
 class SuperquoteBot:
     """
-    A robust automation bot to track and analyze 'Superquotes' (Value Bets) on Bet365.
+    A robust automation bot to detect and track advertised boosted odds.
     Handles scraping, notifications, data logging, and error recovery.
     """
 

@@ -1,83 +1,61 @@
-# 📈 Superquote Tracker & Value Bet Bot
+# Boosted Odds Monitor
 
-A fully automated Python tool designed to detect market inefficiencies in sports betting odds (Value Bets) in real-time. This project combines web scraping, API integration, and statistical analysis to track "Superquotes" (boosted odds) on Bet365.
+An asynchronous Python automation tool that monitors boosted sports odds, records newly observed entries, and sends real-time notifications.
 
-## 🚀 Key Features
-* **Real-Time Monitoring:** Scrapes odds 24/7 using **Playwright** to handle dynamic Single Page Applications (SPAs).
-* **Instant Notifications:** Sends alerts via **Telegram Bot API** immediately when a value bet is detected.
-* **Data Logging:** Automatically saves history to **Google Sheets** via API (`gspread`) for statistical analysis (ROI, EV).
-* **Robustness:** Includes automatic error handling, exponential backoff retries, heartbeat monitoring, and MD5 hashing for unique event tracking.
+This project detects and tracks advertised boosted odds. It **does not** estimate true event probabilities, expected value, or betting profitability, and it should not be described as a predictive or machine-learning model.
 
-## 🛠️ Tech Stack
-* **Language:** Python 3.x
-* **Web Scraping:** Playwright (Async), Aiohttp
-* **APIs:** Telegram Bot API, Google Sheets API
-* **Logic:** Asyncio for concurrency, JSON for local history.
+## Features
 
-## ⚙️ Installation & Usage
+- Monitors a dynamic single-page application with Playwright.
+- Uses `asyncio` and `aiohttp` for non-blocking browser and notification work.
+- Sends new-entry alerts through the Telegram Bot API.
+- Stores history locally and can append records to Google Sheets.
+- Includes retry/backoff behavior, content hashing, and optional health-check pings.
 
-### 1. Clone the repository
+## Stack
+
+- Python 3
+- Playwright
+- `asyncio` / `aiohttp`
+- Telegram Bot API
+- Google Sheets API (`gspread`)
+
+## Setup
+
 ```bash
-git clone [https://github.com/LorSt4r/boosted-odd-tracker.git](https://github.com/LorSt4r/boosted-odd-tracker.git)
+git clone https://github.com/LorSt4r/boosted-odd-tracker.git
 cd boosted-odd-tracker
-
-```
-
-### 2. Install dependencies
-
-First, install the required Python libraries:
-
-```bash
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-
+playwright install chromium
+cp .env.example .env
 ```
 
-Then, install the necessary browsers for Playwright (required for scraping):
-
-```bash
-playwright install
-
-```
-
-### 3. Configuration
-
-Create a file named `.env` in the root directory. This file must contain your private keys and configuration settings.
-
-**Example `.env` structure:**
-
-```env
-# Telegram Configuration
-TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
-TELEGRAM_CHAT_IDS=12345678,87654321
-
-# File Paths
-SUPERQUOTE_HISTORY_FILE=superquote_history.json
-
-# Google Sheets Configuration (Optional)
-GOOGLE_SHEETS_CREDENTIALS_FILE=credentials.json
-GOOGLE_SHEETS_SPREADSHEET_ID=your_google_sheet_id_here
-GOOGLE_SHEETS_WORKSHEET_NAME=Database
-HEALTHCHECK_URL=https://hc-ping.com/yourhealtcheckurl
-
-```
-
-*Note: You need to place your Google Service Account JSON file (renamed to `credentials.json`) in the project folder.*
-
-### 4. Run the Bot
+Fill in the required values in `.env`, then run:
 
 ```bash
 python superquote_checker.py
-
 ```
 
-## ⚠️ Disclaimer
+Google Sheets and health-check integration are optional. Keep service-account JSON and all API tokens outside version control.
 
-This project was created for **educational purposes only** to study statistical anomalies, web automation, and asynchronous programming. The author is not responsible for any financial losses or account limitations resulting from the use of this software.
+## Configuration
 
-## 📄 License
+| Variable | Required | Purpose |
+|---|---:|---|
+| `TELEGRAM_BOT_TOKEN` | Yes | Telegram bot authentication token |
+| `TELEGRAM_CHAT_IDS` | Yes | Comma-separated target chat IDs |
+| `SUPERQUOTE_HISTORY_FILE` | No | Local JSON history path |
+| `HEALTHCHECK_URL` | No | External heartbeat endpoint |
+| `GOOGLE_SHEETS_CREDENTIALS_FILE` | No | Path to a Google service-account JSON file |
+| `GOOGLE_SHEETS_SPREADSHEET_ID` | No | Target spreadsheet ID |
+| `GOOGLE_SHEETS_WORKSHEET_NAME` | No | Target worksheet name |
 
-This project is licensed under the MIT License - see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
+## Scope and responsible use
 
-```
+The project is an educational automation experiment. Website structure may change without notice, and use of automated browsing must comply with applicable law and the target site's terms. No prediction, financial advice, or guarantee of availability is provided.
 
-```
+## License
+
+MIT — see [LICENSE](LICENSE).
